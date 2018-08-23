@@ -19,3 +19,18 @@ Follow the guide [https://reactjs.org/tutorial/tutorial.html](https://reactjs.or
 8. Add a toggle button that lets you sort the moves in either ascending or descending order.  
 
 9. When someone wins, highlight the three squares that caused the win.  
+
+## build steps
+
+```bash
+$ npm install
+$ npm run dev
+```
+The project will be running at http://localhost:8080/
+
+## command lines
+1. `$ npm run build`  
+  complie the source files into bundle.js.  
+
+1. `$ npm run dev`  
+  start a webpck dev server based on the build folder.  
