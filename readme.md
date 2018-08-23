@@ -1,4 +1,4 @@
-#tic-tac-toe
+# tic-tac-toe
 
 Follow the guide [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/tutorial/tutorial.html)
 
