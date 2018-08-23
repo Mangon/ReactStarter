@@ -1,9 +1,9 @@
-import './index.css';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Game from './Game.jsx';
+import './index.less'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Game from './components/Game.jsx'
 
 ReactDOM.render(
   <Game />,
   document.getElementById('root')
-);
+)
