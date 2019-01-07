@@ -845,19 +845,19 @@ module.exports = containsNode;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_css__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_less__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_less__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Game_jsx__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Game_jsx__ = __webpack_require__(30);
 
 
 
 
 
-__WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Game_jsx__["a" /* default */], null), document.getElementById('root'));
+__WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Game_jsx__["a" /* default */], null), document.getElementById('root'));
 
 /***/ }),
 /* 13 */
@@ -880,8 +880,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!./index.css", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!./index.css");
+		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/less-loader/dist/cjs.js!./index.less", function() {
+			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/less-loader/dist/cjs.js!./index.less");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -899,7 +899,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "body {\r\n  font: 14px \"Century Gothic\", Futura, sans-serif;\r\n  margin: 20px;\r\n}\r\n\r\nol, ul {\r\n  padding-left: 30px;\r\n}\r\n\r\n.board-row:after {\r\n  clear: both;\r\n  content: \"\";\r\n  display: table;\r\n}\r\n\r\n.status {\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.square {\r\n  background: #fff;\r\n  border: 1px solid #999;\r\n  float: left;\r\n  font-size: 24px;\r\n  font-weight: bold;\r\n  line-height: 34px;\r\n  height: 34px;\r\n  margin-right: -1px;\r\n  margin-top: -1px;\r\n  padding: 0;\r\n  text-align: center;\r\n  width: 34px;\r\n}\r\n\r\n.square:focus {\r\n  outline: none;\r\n}\r\n\r\n.kbd-navigation .square:focus {\r\n  background: #ddd;\r\n}\r\n\r\n.game {\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n\r\n.game-info {\r\n  margin-left: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\n  font: 14px \"Century Gothic\", Futura, sans-serif;\n  margin: 20px;\n}\nol,\nul {\n  padding-left: 30px;\n}\nbutton {\n  display: inline-block;\n  line-height: 1;\n  white-space: nowrap;\n  cursor: pointer;\n  background: #fff;\n  border: 1px solid #dcdfe6;\n  color: #606266;\n  -webkit-appearance: none;\n  text-align: center;\n  box-sizing: border-box;\n  transition: 0.1s;\n  padding: 12px 20px;\n  font-size: 14px;\n  border-radius: 4px;\n}\nbutton:focus {\n  outline: none;\n}\n.game {\n  display: flex;\n  flex-direction: column;\n}\n.game .game-info {\n  margin: auto;\n  padding-bottom: 20px;\n}\n.game .game-info div {\n  padding-bottom: 10px;\n}\n.game .game-info button {\n  margin-right: 10px;\n}\n.game .game-board {\n  margin: auto;\n}\n.game .game-board .board-row {\n  display: flex;\n}\n.game .game-board .board-row .square {\n  border: 1px solid #999;\n  border-radius: 0;\n  font-size: 40px;\n  font-weight: bold;\n  height: 50px;\n  width: 50px;\n  margin-right: -1px;\n  margin-top: -1px;\n  padding: 0;\n}\n.game .game-history {\n  margin: auto;\n}\n.game .game-history li {\n  padding-left: 10px;\n}\n.game .game-history button {\n  margin: 10px 10px 0 0;\n  min-width: 200px;\n}\n", ""]);
 
 // exports
 
@@ -8462,7 +8462,6 @@ module.exports = camelize;
 
 
 class Game extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -8518,34 +8517,69 @@ class Game extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     const history = this.state.history.slice();
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const style = { "fontWeight": "bold" };
+    const style = { 'fontWeight': 'bold' };
 
     if (!this.state.moveOrder) {
       history.reverse();
     }
     const moves = history.map((step, move) => {
       const realMove = this.state.moveOrder ? move : history.length - 1 - move;
-      const desc = realMove ? 'Go to move #' + realMove + " (" + parseInt(history[move].position / 3) + "," + history[move].position % 3 + ")" : 'Go to game start';
+      const desc = realMove ? 'Go to move #' + realMove + ' (' + parseInt(history[move].position / 3) + ',' + history[move].position % 3 + ')' : 'Go to game start';
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'li',
         { key: move },
+        '  ',
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
           { style: realMove == this.state.stepNumber ? style : {}, onClick: () => this.jumpTo(realMove) },
-          desc
-        )
+          '  ',
+          desc,
+          ' '
+        ),
+        '  '
       );
     });
 
     let status;
     if (winner) {
       status = 'Winner: ' + current.squares[winner[0]];
+    } else if (history.length === 10 && this.state.stepNumber === 9) {
+      status = 'Draw';
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
+
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { className: 'game' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'game-info' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          null,
+          '  ',
+          status,
+          ' '
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          null,
+          ' Show in ',
+          this.state.moveOrder ? 'Asc' : 'Desc',
+          ' '
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { onClick: () => this.handleRestart() },
+          ' New Game '
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { onClick: () => this.toggleSort() },
+          ' Toggle Sort '
+        )
+      ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'game-board' },
@@ -8556,32 +8590,13 @@ class Game extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'game-info' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          null,
-          status
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          null,
-          'Show in ',
-          this.state.moveOrder ? "Asc" : "Desc"
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'button',
-          { onClick: () => this.handleRestart() },
-          'New Game'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'button',
-          { onClick: () => this.toggleSort() },
-          'Toggle Sort'
-        ),
+        { className: 'game-history' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'ol',
           null,
-          moves
+          '  ',
+          moves,
+          ' '
         )
       )
     );
@@ -8613,7 +8628,6 @@ function calculateWinner(squares) {
 
 
 class Board extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
   constructor(props) {
     super(props);
     this.state = {
